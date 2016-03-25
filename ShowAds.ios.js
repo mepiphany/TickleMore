@@ -12,37 +12,78 @@ var {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  ListView,
+  ScrollView
 } = React;
 
+var REQUEST_URL = "http://localhost:3000/api/v1/advertisements"
+
+
 class ShowAds extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ads: null,
+    };
+  }
+  fetchData() {
+    fetch(REQUEST_URL)
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.setState({
+          ads: responseData.ads,
+        });
+      })
+      .done();
+  }
+  
+  componentDidMount() {
+    this.fetchData();
+  }
   render() {
+      if (!this.state.ads) {
+        return this.renderLoadingView();
+      }
+      var ad = this.state.ads;
+      return this.renderAd(ad);
+  }
+
+  renderLoadingView() {
     return (
       <View style={styles.container}>
-      <Swiper showsButtons={true}>
-      <View style={styles.slide1}>
-        <Text style={styles.text}>Ads1</Text>
-        <Image style={styles.box}
-          source={{uri: this.props.image_url}} />
+        <Text>
+          Loading Ads...
+        </Text>
       </View>
-      <View style={styles.slide2}>
-        <Text style={styles.text}>Ads2</Text>
-          <Image style={styles.box}
-            source={require('./img/mac.png')} />
+    );
+  }
+  renderAd(ad) {
+    return (
+      <View style={styles.container}>
+        <View>
+        <Image
+          source={{uri: ad.image}}
+          style={styles.image}
+          />
+        </View>
+        <View>
+          <Text style={styles.text}>Title: {ad.title}</Text>
+          <Text style={styles.text}>Cash Value: {ad.cash_value}</Text>
+        </View>
       </View>
-      <View style={styles.slide3}>
-        <Text style={styles.text}>Ads3</Text>
-          <Image style={styles.box}
-            source={require('./img/ads.png')} />
-      </View>
-
-      </Swiper>
-    </View>
     );
   }
 }
 
 var styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    height: 400,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   box: {
     width: 250,
     height: 400,
@@ -53,6 +94,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center'
 
   },
   wrapper: {
@@ -78,8 +120,9 @@ var styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-    fontSize: 30,
-    fontWeight: 'bold'
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignItems: 'center'
 
   }
 
