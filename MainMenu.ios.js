@@ -20,12 +20,12 @@ class Menu extends Component {
     return (
         <ScrollableTabView style={styles.space}>
           <CashInfo tabLabel="CashInfo" />
-          <Store tabLabel="Store" />
-          <Coupons tabLabel="Coupons" />
+          <Store tabLabel="Store"
+            navigator={this.props.navigator}
+            />
+          <Coupons tabLabel="Coupons"/>
           <More tabLabel="More" />
         </ScrollableTabView>
-
-
     )
   }
 }

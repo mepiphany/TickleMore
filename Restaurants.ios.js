@@ -3,39 +3,38 @@
 var React = require('react-native');
 
 var {
-  Component,
-  View,
-  Text,
   StyleSheet,
-  Image,
+  View,
   TouchableHighlight,
-  ListView
+  Text,
+  Component,
+  ListView,
+  Image
 } = React;
 
-var REQUEST_URL = 'http://localhost:3000/api/v1/coupons'
+var REQUEST_URL = 'http://localhost:3000/api/v1/restaurants'
 
-class Coupons extends Component {
+class Restaurants extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
+  super(props);
+  this.state = {
+    dataSource: new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    }),
       loaded: false,
     };
   }
   fetchData(){
     fetch(REQUEST_URL)
     .then((response) => response.json())
-    .then((responseData) => {
+    .then((responseData)=> {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(responseData.coupons),
+        dataSource: this.state.dataSource.cloneWithRows(responseData.restaurants),
         loaded: true,
       });
     })
     .done();
   }
-
   componentDidMount(){
     this.fetchData();
   }
@@ -43,41 +42,44 @@ class Coupons extends Component {
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
-    return (
+    return(
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderCoupon}/>
+        renderRow={this.renderRestaurant}/>
+
     )
   }
   renderLoadingView() {
     return (
       <View style={styles.container}>
         <Text>
-          Loading Coupons...
+          Loading Restaurants...
         </Text>
       </View>
-    );
+    )
   }
-  renderCoupon(coupon) {
+  renderRestaurant(restaurant) {
     return (
-      <View>
+      <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <Image
-            source={{uri: coupon.image}}
+            source={{uri: restaurant.image}}
             style={styles.image}
             />
           <View style={styles.container}>
-            <Text>{coupon.title}</Text>
+            <Text>{restaurant.title}</Text>
           </View>
         </View>
         <View style={styles.separator}></View>
       </View>
     )
   }
-
 }
 
 var styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1
+  },
   rowContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -85,8 +87,8 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-    width: 100,
-    height: 58
+    width: 50,
+    height: 50
   },
   rightContainer: {
     flexDirection: 'row',
@@ -102,4 +104,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Coupons;
+module.exports = Restaurants;

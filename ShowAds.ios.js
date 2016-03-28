@@ -32,12 +32,11 @@ class ShowAds extends Component {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          ads: responseData.ads,
+         ads: responseData.ads,
         });
       })
       .done();
   }
-  
   componentDidMount() {
     this.fetchData();
   }
@@ -45,8 +44,13 @@ class ShowAds extends Component {
       if (!this.state.ads) {
         return this.renderLoadingView();
       }
-      var ad = this.state.ads;
+      var ad = this.state.ads[0];
       return this.renderAd(ad);
+  }
+
+  ads() {
+    var ad = this.state.ads;
+
   }
 
   renderLoadingView() {
