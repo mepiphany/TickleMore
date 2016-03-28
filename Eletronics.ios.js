@@ -12,16 +12,65 @@ var {
   Image
 } = React;
 
+var REQUEST_URL = 'http://localhost:3000/api/v1/eletronics'
 
 class Eletronics extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
+      loaded: false,
+    }
+  }
+  fetchData(){
+    fetch(REQUEST_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(responseData.eletronics),
+        loaded: true,
+      });
+    })
+    .done();
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
   render() {
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
     return(
-      <View style={styles.container}>
-        <Text>
-          Eletronics
-        </Text>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderEletronic}/>
+    )
+  }
+  renderLoadingView() {
+    return(
+    <View style={styles.container}>
+      <Text>
+        Loading Eletronics...
+      </Text>
+    </View>
+  )
+  }
+  renderEletronic(eletronic) {
+    return (
+      <View style={styles.mainContainer}>
+        <View style={styles.rowContainer}>
+          <Image
+            source={{uri: eletronic.image}}
+            style={styles.image}
+            />
+          <View style={styles.container}>
+            <Text>{eletronic.title}</Text>
+          </View>
+        </View>
+        <View style={styles.separator}></View>
       </View>
-
     )
   }
 }
