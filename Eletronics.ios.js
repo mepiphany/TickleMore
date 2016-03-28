@@ -7,8 +7,11 @@ var {
   View,
   TouchableHighlight,
   Text,
-  Component
+  Component,
+  ListView,
+  Image
 } = React;
+
 
 class Eletronics extends Component {
   render() {
@@ -24,9 +27,29 @@ class Eletronics extends Component {
 }
 
 var styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1
+  },
+  rowContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    alignItems: 'center'
+  },
+  image: {
+    width: 50,
+    height: 50
+  },
+  rightContainer: {
+    flexDirection: 'row',
+    flex: 1
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#dddddd'
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center'
   }
 
