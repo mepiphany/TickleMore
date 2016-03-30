@@ -60,6 +60,7 @@ class Restaurants extends Component {
   }
   renderRestaurant(restaurant) {
     return (
+
       <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <Image

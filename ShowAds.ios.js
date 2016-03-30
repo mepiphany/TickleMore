@@ -5,6 +5,8 @@
 'use strict';
 var React = require('react-native');
 var Swiper = require('react-native-swiper');
+// var Swiper = require('./node_modules/react-native-swiper/src/index.js');
+
 
 var {
   AppRegistry,
@@ -24,6 +26,7 @@ class ShowAds extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      index: 1,
       ads: null,
     };
   }
@@ -44,15 +47,9 @@ class ShowAds extends Component {
       if (!this.state.ads) {
         return this.renderLoadingView();
       }
-      var ad = this.state.ads[0];
+      var ad = this.state.ads[this.state.index];
       return this.renderAd(ad);
   }
-
-  ads() {
-    var ad = this.state.ads;
-
-  }
-
   renderLoadingView() {
     return (
       <View style={styles.container}>
@@ -62,19 +59,31 @@ class ShowAds extends Component {
       </View>
     );
   }
+  _changeIndex() {
+    var newIndex = this.state.index + 1;
+    this.setState({index: newIndex});
+  }
+
+  _onMomentumScrollEnd(e, state, context) {
+    this._changeIndex();
+  }
+
   renderAd(ad) {
     return (
       <View style={styles.container}>
-        <View>
-        <Image
-          source={{uri: ad.image}}
-          style={styles.image}
-          />
-        </View>
-        <View>
-          <Text style={styles.text}>Title: {ad.title}</Text>
+        <Swiper
+          onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)}
+          showsButtons={true}
+          style={styles.swiper}>
+          <View style={styles.slide1}>
+            <Image
+              source={{uri: ad.image}}
+              style={styles.image}
+              />
+          </View>
           <Text style={styles.text}>Cash Value: {ad.cash_value}</Text>
-        </View>
+        </Swiper>
+        <Text style={styles.text}>Title: {ad.title}</Text>
       </View>
     );
   }
@@ -82,26 +91,15 @@ class ShowAds extends Component {
 
 var styles = StyleSheet.create({
   image: {
-    flex: 1,
     height: 400,
     width: 250,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  box: {
-    width: 250,
-    height: 400,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue'
-  },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-
-  },
-  wrapper: {
 
   },
   slide1: {

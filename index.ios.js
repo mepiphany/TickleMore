@@ -19,7 +19,8 @@ class TickleMore extends Component {
         initialRoute={{
           title: "TickleMore",
           component: AppView
-        }}/>
+        }}
+        navigationBarHidden={true}/>
     )
   }
 }

@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var InviteFriends = require('./InviteFriends.ios')
+var History = require('./History.ios')
 
 var {
   Component,
@@ -11,6 +13,18 @@ var {
 } = React;
 
 class CashInfo extends Component {
+  inviteFriend(){
+    this.props.navigator.push({
+      title: "InviteFriends",
+      component: InviteFriends
+    })
+  }
+  history(){
+    this.props.navigator.push({
+      title: 'History',
+      component: History
+    })
+  }
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -21,12 +35,18 @@ class CashInfo extends Component {
           </Text>
         </View>
         <View style={styles.container}>
-          <TouchableHighlight style={styles.button}>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => this.inviteFriend()}
+            >
             <Text style={styles.buttonText}>Invite Friends</Text>
           </TouchableHighlight>
         </View>
         <View style={styles.container}>
-          <TouchableHighlight style={styles.button}>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => this.history()}
+            >
             <Text style={styles.buttonText}>History</Text>
           </TouchableHighlight>
         </View>
