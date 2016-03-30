@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var ShowAds = require('./ShowAds.ios');
+var ShowAds = require('./ShowAdsT.ios');
 var MainMenu= require('./MainMenu.ios');
 
 var {
