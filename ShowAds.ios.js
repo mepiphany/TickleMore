@@ -2,6 +2,10 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
+-------------------------------------------------
+ // Refer to ShowAdsT.ios.js not this one!!!!
+-------------------------------------------------
+
 'use strict';
 var React = require('react-native');
 var Swiper = require('react-native-swiper');

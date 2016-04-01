@@ -20,7 +20,7 @@ class TickleMore extends Component {
           title: "TickleMore",
           component: AppView
         }}
-        navigationBarHidden={true}/>
+        navigationBarHidden={false}/>
     )
   }
 }

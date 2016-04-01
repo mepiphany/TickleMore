@@ -27,9 +27,9 @@ class ShowAds extends Component {
     super(props);
     this.state = {
       ads: [],
-      counter: 0
-
+      cashIncrement: 0
     };
+    this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this)
   }
   fetchData() {
     fetch(REQUEST_URL)
@@ -41,13 +41,21 @@ class ShowAds extends Component {
       })
       .done();
   }
+
   componentDidMount() {
     this.fetchData();
+
   }
+
+  _handleIncrement() {
+    this.setState({cashIncrement: this.state.cashIncrement + 1})
+  }
+
 
   _onMomentumScrollEnd(e, state, context) {
-
+    this._handleIncrement()
   }
+
   render() {
       if (!this.state.ads) {
         return this.renderLoadingView();
@@ -57,13 +65,14 @@ class ShowAds extends Component {
             showsButtons={true}
             onMomentumScrollEnd={this._onMomentumScrollEnd}
             >
-            {this.state.ads.map(function(ad, index){
+            {this.state.ads.map((ad, index) => {
               return(
                 <View style={styles.container} key={index}>
                   <Image
                     source={{uri: ad.image}}
                     style={styles.image}
                     />
+                  <Text>{this.state.cashIncrement}</Text>
                 </View>
               );
             })}
