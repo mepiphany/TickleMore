@@ -20,6 +20,7 @@ var {
 } = React;
 
 var REQUEST_URL = "http://localhost:3000/api/v1/advertisements"
+var POST_REQUEST_URL = "http://localhost:3000/api/v1/breadcrumbs"
 
 
 class ShowAds extends Component {
@@ -27,7 +28,8 @@ class ShowAds extends Component {
     super(props);
     this.state = {
       ads: [],
-      cashIncrement: 0
+      cashIncrement: 0,
+      adIndex: 0
     };
     this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this)
   }
@@ -47,14 +49,37 @@ class ShowAds extends Component {
 
   }
 
-  _handleIncrement() {
-    this.setState({cashIncrement: this.state.cashIncrement + 1})
+  _handleIncrement(adIndex) {
+    this.setState({adIndex: adIndex, cashIncrement: this.state.cashIncrement + 1})
   }
+
+
+
+  postData() {
+        fetch(POST_REQUEST_URL, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+          })
+        })
+      }
+
 
 
   _onMomentumScrollEnd(e, state, context) {
-    this._handleIncrement()
+    this._handleIncrement(state.index)
+    this.postData()
+
   }
+  cashResult() {
+    return(
+      this.state.cashIncrement
+    );
+  }
+
 
   render() {
       if (!this.state.ads) {
@@ -64,6 +89,8 @@ class ShowAds extends Component {
           <Swiper
             showsButtons={true}
             onMomentumScrollEnd={this._onMomentumScrollEnd}
+            index={this.state.adIndex}
+            loop={false}
             >
             {this.state.ads.map((ad, index) => {
               return(
@@ -72,7 +99,8 @@ class ShowAds extends Component {
                     source={{uri: ad.image}}
                     style={styles.image}
                     />
-                  <Text>{this.state.cashIncrement}</Text>
+                  <Text>{ad.cash_value}</Text>
+                  <Text>{this.cashResult()}</Text>
                 </View>
               );
             })}
