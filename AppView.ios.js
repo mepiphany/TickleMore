@@ -10,13 +10,28 @@ var {
 
 } = React;
 
+var REQUEST_URL = "http://localhost:3000/api/v1/breadcrumbs"
+
 class AppView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'ShowAds'
+      selectedTab: 'ShowAds',
+      cashSum: ""
     };
   }
+  fetchData() {
+    fetch(REQUEST_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        cashSum: responseData.cash.sum,
+        selectedTab: 'MainMenu'
+      });
+    })
+    .done();
+  }
+
   render() {
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
@@ -32,11 +47,9 @@ class AppView extends Component {
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'MainMenu'}
           title= 'Menu'
-          onPress={() => {this.setState({
-            selectedTab: 'MainMenu'
-          });
-        }}>
-        <MainMenu navigator={this.props.navigator} />
+          onPress={() => this.fetchData()}>
+        <MainMenu navigator={this.props.navigator}
+                  cashSum={this.state.cashSum}/>
         </TabBarIOS.Item>
       </TabBarIOS>
     )

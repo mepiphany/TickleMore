@@ -21,6 +21,7 @@ class Menu extends Component {
         <ScrollableTabView style={styles.space}>
           <CashInfo tabLabel="CashInfo"
             navigator={this.props.navigator}
+            cashSum={this.props.cashSum}
             />
           <Store tabLabel="Store"
             navigator={this.props.navigator}

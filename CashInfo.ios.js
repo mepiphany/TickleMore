@@ -14,6 +14,8 @@ var {
   TouchableHighlight
 } = React;
 
+
+
 class CashInfo extends Component {
   inviteFriend(){
     this.props.navigator.push({
@@ -27,18 +29,11 @@ class CashInfo extends Component {
       component: History
     })
   }
-  cashResult() {
-    <ShowAds />
-  }
   render() {
-
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container1}>
-          <Text style={styles.text}>
-            Cash Amount
-            {this.cashResult()}
-          </Text>
+          <Text style={styles.text}>{this.props.cashSum}</Text>
         </View>
         <View style={styles.container}>
           <TouchableHighlight

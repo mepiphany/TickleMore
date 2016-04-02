@@ -55,7 +55,7 @@ class ShowAds extends Component {
 
 
 
-  postData() {
+  postData(adSwiped) {
         fetch(POST_REQUEST_URL, {
           method: "POST",
           headers: {
@@ -63,6 +63,10 @@ class ShowAds extends Component {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            title: adSwiped.title,
+            view: true,
+            cash_value: adSwiped.cash_value
+
           })
         })
       }
@@ -71,7 +75,8 @@ class ShowAds extends Component {
 
   _onMomentumScrollEnd(e, state, context) {
     this._handleIncrement(state.index)
-    this.postData()
+    this.postData(this.state.ads[this.state.adIndex - 1])
+    
 
   }
   cashResult() {
