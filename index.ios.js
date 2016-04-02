@@ -7,20 +7,21 @@ var {
   AppRegistry,
   StyleSheet,
   NavigatorIOS,
-  Component
+  Component,
+  ScrollView
 } = React;
 
 class TickleMore extends Component {
   render() {
     return(
       <NavigatorIOS
-
         style={styles.container}
         initialRoute={{
           title: "TickleMore",
           component: AppView
         }}
-        navigationBarHidden={false}/>
+        navigationBarHidden={false}>
+      </NavigatorIOS>
     )
   }
 }

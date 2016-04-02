@@ -9,7 +9,8 @@ var {
   StyleSheet,
   Image,
   TouchableHighlight,
-  ListView
+  ListView,
+  ScrollView
 } = React;
 
 var REQUEST_URL = 'http://localhost:3000/api/v1/coupons'
@@ -44,10 +45,12 @@ class Coupons extends Component {
       return this.renderLoadingView();
     }
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderCoupon}/>
-    )
+      <ScrollView>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderCoupon}/>
+    </ScrollView>
+  )
   }
   renderLoadingView() {
     return (

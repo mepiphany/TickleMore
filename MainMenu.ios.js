@@ -18,14 +18,14 @@ var {
 class Menu extends Component {
   render() {
     return (
-        <ScrollableTabView style={styles.space}>
+        <ScrollableTabView
+          style={styles.space}>
           <CashInfo tabLabel="CashInfo"
             navigator={this.props.navigator}
             cashSum={this.props.cashSum}
             />
           <Store tabLabel="Store"
-            navigator={this.props.navigator}
-            />
+            navigator={this.props.navigator}/>
           <Coupons tabLabel="Coupons"/>
           <More tabLabel="More" />
         </ScrollableTabView>

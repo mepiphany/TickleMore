@@ -9,7 +9,7 @@ var {
   Text,
   Component,
   ListView,
-  Image
+  Image,
 } = React;
 
 var REQUEST_URL = 'http://localhost:3000/api/v1/restaurants'
@@ -43,10 +43,9 @@ class Restaurants extends Component {
       return this.renderLoadingView();
     }
     return(
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRestaurant}/>
-
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRestaurant}/>
     )
   }
   renderLoadingView() {

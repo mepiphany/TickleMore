@@ -45,11 +45,13 @@ class AppView extends Component {
         <ShowAds />
         </TabBarIOS.Item>
         <TabBarIOS.Item
+
           selected={this.state.selectedTab === 'MainMenu'}
           title= 'Menu'
           onPress={() => this.fetchData()}>
         <MainMenu navigator={this.props.navigator}
-                  cashSum={this.state.cashSum}/>
+                  cashSum={this.state.cashSum}
+                  />
         </TabBarIOS.Item>
       </TabBarIOS>
     )
