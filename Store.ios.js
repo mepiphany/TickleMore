@@ -83,10 +83,10 @@ var styles = StyleSheet.create({
   container: {
     paddingRight: 70,
     paddingLeft: 70,
-    paddingTop: 50,
+    paddingTop: 35,
   },
   button: {
-    height: 80,
+    height: 85,
     flexDirection: 'row',
     backgroundColor: 'white',
     justifyContent: 'center',

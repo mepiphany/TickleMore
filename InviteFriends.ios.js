@@ -10,14 +10,17 @@ var {
   Component,
   ListView,
   TouchableHighlight,
+  Alert,
+  ScrollView
 } = React;
 
+var Icon = require('react-native-vector-icons/Ionicons');
 var REQUEST_URL = "http://localhost:3000/api/v1/users"
 
 class InviteFriends extends Component {
   backToCashInfo(){
     this.props.navigator.pop({
-      title: "InviteFriends",
+      title: "CashInfo",
       component: CashInfo
     })
   }
@@ -50,15 +53,26 @@ class InviteFriends extends Component {
       return this.renderLoadingView();
     }
     return(
-      <View style={{paddingTop: 20}}>
-        <TouchableHighlight onPress={() => this.backToCashInfo()}>
-          <Text>Hello</Text>
-        </TouchableHighlight>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderFriend}>
-      </ListView>
+      <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.navBar}>
+            <TouchableHighlight
+              style={{flex: 1, width: 5}}
+              onPress={() => this.backToCashInfo()}>
+              <Text style={styles.navBarText}><Icon name={"chevron-left"} size={15}/>&nbsp;&nbsp;<Icon name={"cash"} size={15}/></Text>
+            </TouchableHighlight>
+          <View style={styles.navBarRight}>
+            <Text style={styles.navBarTitle}>Invite Friends</Text>
+          </View>
+        </View>
+        <View>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderFriend}>
+          </ListView>
+        </View>
       </View>
+      </ScrollView>
 
     )
   }
@@ -79,7 +93,9 @@ class InviteFriends extends Component {
             <Text>{friends.name}</Text>
           </View>
           <View style={styles.rightContainer}>
-            <Text>Invite</Text>
+            <TouchableHighlight>
+            <Text><Icon name={"paper-airplane"} size={20}/></Text>
+            </TouchableHighlight>
           </View>
         </View>
         <View style={styles.separator}></View>
@@ -115,6 +131,46 @@ var styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start'
   },
+  navBar: {
+    height: 49,
+    backgroundColor: '#ddd',
+    borderBottomColor: '#d5dbdb',
+    borderTopColor: '#d5dbdb',
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    backgroundColor: '#000',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  container: {
+    flex: 1,
+    paddingTop: 20,
+  },
+  navBarText: {
+    flex: 1,
+    color: '#fff',
+    textAlign: 'left',
+    width: 50,
+    paddingLeft: 10
+  },
+  navBarTitle: {
+    color: '#ddd',
+    width: 110,
+    fontSize: 18
+  },
+  navBarLeft: {
+    flex: 1,
+    alignItems: 'flex-start',
+
+  },
+  navBarRight: {
+    flex: 1,
+    alignSelf: 'center',
+    right: 53
+  }
+
+
+
 
 });
 

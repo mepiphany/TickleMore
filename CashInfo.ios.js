@@ -46,7 +46,12 @@ class CashInfo extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.container1}>
           <View>
-            <Text style={{padding: 9, fontSize: 15}}>TickleMore</Text>
+            <Text
+              style={{paddingTop: 9,
+                      paddingLeft: 9,
+                      paddingRight: 9,
+                      fontSize: 15,
+                    }}>TickleMore</Text>
           </View>
           <View style={{alignItems: "flex-end", paddingRight: 15}}>
             <TouchableHighlight
@@ -71,6 +76,7 @@ class CashInfo extends Component {
         </View>
         <View style={styles.container}>
           <TouchableHighlight
+            AppView={this.props.AppView}
             underlayColor= "#1e90ff"
             style={styles.button}
             onPress={() => this.inviteFriend()}>
@@ -97,7 +103,7 @@ var styles = StyleSheet.create({
     paddingTop: 0.1
   },
   container: {
-    paddingTop: 20,
+    paddingTop: 46,
     paddingRight: 60,
     paddingLeft: 60,
     alignItems: 'center',
@@ -111,7 +117,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   container1: {
-    height: 160,
+    height: 150,
     backgroundColor: '#FFE303',
     borderBottomColor: '#d5dbdb',
     borderTopColor: '#d5dbdb',
@@ -154,7 +160,7 @@ var styles = StyleSheet.create({
   ImageBorder: {
     borderColor: '#000',
     borderWidth: 1,
-    padding: 8
+    padding: 5
 
   }
 

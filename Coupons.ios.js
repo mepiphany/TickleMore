@@ -45,7 +45,7 @@ class Coupons extends Component {
       return this.renderLoadingView();
     }
     return (
-      <ScrollView>
+      <ScrollView style={{marginBottom: 50}}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderCoupon}/>
@@ -82,7 +82,7 @@ class Coupons extends Component {
 
 var styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
+    flex: 1
   },
   rowContainer: {
     flex: 1,

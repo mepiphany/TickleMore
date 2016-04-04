@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Store = require('./Store.ios')
 
 var {
   StyleSheet,
@@ -13,9 +14,16 @@ var {
   ScrollView
 } = React;
 
+var Icon = require('react-native-vector-icons/Ionicons');
 var REQUEST_URL = 'http://localhost:3000/api/v1/restaurants'
 
 class Restaurants extends Component {
+  backToStore(){
+    this.props.navigator.pop({
+      title: "Store",
+      component: Store
+    })
+  }
   constructor(props) {
   super(props);
   this.state = {
@@ -45,6 +53,18 @@ class Restaurants extends Component {
     }
     return(
       <ScrollView>
+        <View style={styles.navContainer}>
+        <View style={styles.navBar}>
+          <TouchableHighlight
+            style={{flex: 1, width: 5}}
+            onPress={() => this.backToStore()}>
+            <Text style={styles.navBarText}><Icon name={"chevron-left"} size={17}/>&nbsp;&nbsp;<Icon name={"ios-cart-outline"} size={17}/></Text>
+          </TouchableHighlight>
+          <View style={styles.navBarRight}>
+            <Text style={styles.navBarTitle}>Restaurants</Text>
+          </View>
+        </View>
+      </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRestaurant}/>
@@ -100,10 +120,43 @@ var styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#dddddd'
   },
+  navContainer: {
+    flex: 1,
+    paddingTop: 20
+  },
   container: {
     flex: 1,
     alignItems: 'center'
-  }
+  },
+  navBar: {
+    flex: 1,
+    height: 49,
+    borderBottomColor: '#d5dbdb',
+    borderTopColor: '#d5dbdb',
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    backgroundColor: '#000',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  navBarText: {
+    flex: 1,
+    color: '#fff',
+    textAlign: 'left',
+    width: 50,
+    paddingLeft: 10
+  },
+  navBarRight: {
+    flex: 1,
+    alignSelf: 'center',
+    right: 50
+  },
+  navBarTitle: {
+    color: '#ddd',
+    width: 110,
+    fontSize: 18
+  },
 });
 
 module.exports = Restaurants;
