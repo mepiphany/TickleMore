@@ -48,13 +48,9 @@ class ShowAds extends Component {
     this.fetchData();
 
   }
-
   _handleIncrement(adIndex) {
     this.setState({adIndex: adIndex, cashIncrement: this.state.cashIncrement + 1})
   }
-
-
-
   postData(adSwiped) {
         fetch(POST_REQUEST_URL, {
           method: "POST",
@@ -75,9 +71,7 @@ class ShowAds extends Component {
 
   _onMomentumScrollEnd(e, state, context) {
     this._handleIncrement(state.index)
-    this.postData(this.state.ads[this.state.adIndex - 1])
-    
-
+    this.postData(this.state.ads[this.state.adIndex])
   }
   cashResult() {
     return(
@@ -96,6 +90,7 @@ class ShowAds extends Component {
             onMomentumScrollEnd={this._onMomentumScrollEnd}
             index={this.state.adIndex}
             loop={false}
+            style={{backgroundColor: '#F5F5F5' }}
             >
             {this.state.ads.map((ad, index) => {
               return(
@@ -160,7 +155,8 @@ class ShowAds extends Component {
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',
-    }
+    },
+
 
   });
 

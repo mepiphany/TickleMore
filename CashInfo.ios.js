@@ -11,8 +11,12 @@ var {
   Text,
   View,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  Image,
+  Alert
 } = React;
+
+var Icon = require('react-native-vector-icons/Ionicons');
 
 
 
@@ -29,26 +33,56 @@ class CashInfo extends Component {
       component: History
     })
   }
+  cashSumAlert(){
+    return (
+      this.props.cashSum
+    )
+  }
+  _onPress(){
+    Alert.alert("Would you like to withdraw? " + "$" + this.cashSumAlert())
+  }
   render() {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container1}>
-          <Text style={styles.text}>{this.props.cashSum}</Text>
+          <View>
+            <Text style={{padding: 9, fontSize: 15}}>TickleMore</Text>
+          </View>
+          <View style={{alignItems: "flex-end", paddingRight: 15}}>
+            <TouchableHighlight
+              style={styles.ImageBorder}
+              underlayColor= "#fff"
+              onPress={() => this._onPress()}
+              >
+            <Image
+              style={styles.cashOutImg}
+              source={require('./img/cash_out.png')}
+              />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.cashResult}>
+            <Text style={styles.text}>
+              <Image
+                style={styles.cashCoinImg}
+                source={require('./img/ticklemorecoin.png')}
+                />
+              &nbsp;{this.props.cashSum}</Text>
+          </View>
         </View>
         <View style={styles.container}>
           <TouchableHighlight
+            underlayColor= "#1e90ff"
             style={styles.button}
-            onPress={() => this.inviteFriend()}
-            >
-            <Text style={styles.buttonText}>Invite Friends</Text>
+            onPress={() => this.inviteFriend()}>
+                <Text style={{alignSelf: 'center'}}><Icon name="person-add" size={50}/></Text>
           </TouchableHighlight>
         </View>
         <View style={styles.container}>
           <TouchableHighlight
+            underlayColor="#1e90ff"
             style={styles.button}
-            onPress={() => this.history()}
-            >
-            <Text style={styles.buttonText}>History</Text>
+            onPress={() => this.history()}>
+              <Text style={{alignSelf: 'center'}}><Icon name="ios-list-outline" size={50}/></Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -59,11 +93,14 @@ class CashInfo extends Component {
 
 var styles = StyleSheet.create({
   mainContainer: {
-    paddingTop: 10
+    flex: 1,
+    backgroundColor: "#F5F5F5",
+    paddingTop: 0.1
   },
   container: {
     paddingTop: 20,
-    padding: 15,
+    paddingRight: 60,
+    paddingLeft: 60,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -76,21 +113,25 @@ var styles = StyleSheet.create({
   },
   container1: {
     height: 160,
-    backgroundColor: '#000'
+    backgroundColor: '#FFE303',
+    borderBottomColor: '#d5dbdb',
+    borderTopColor: '#d5dbdb',
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
   },
   container2: {
     height: 200,
   },
   text: {
-    color: '#fff',
-    fontSize: 20,
-    padding: 10,
+    color: 'black',
+    fontSize: 40,
+    padding: 5,
+    paddingLeft: 25
   },
   button: {
-    height: 50,
-    flex: 1,
+    height: 80,
     flexDirection: 'row',
-    backgroundColor: '#d5dbdb',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignSelf: 'stretch',
     borderWidth: 1,
@@ -98,11 +139,28 @@ var styles = StyleSheet.create({
     borderColor: '#d5dbdb'
   },
   buttonText: {
-    fontSize: 15,
-    color: 'white',
-    alignSelf: 'center'
-
+    fontSize: 19,
+    color: 'black',
+    alignSelf: 'center',
+    justifyContent: 'center'
+  },
+  cashOutImg: {
+    width: 45,
+    height: 45,
+  },
+  cashCoinImg: {
+    width: 20,
+    height: 20,
+  },
+  ImageBorder: {
+    borderColor: '#000',
+    borderWidth: 1,
+    padding: 8
+    
   }
+
+
+
 });
 
 module.exports = CashInfo;

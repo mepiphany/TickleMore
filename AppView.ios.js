@@ -7,8 +7,10 @@ var MainMenu= require('./MainMenu.ios');
 var {
   TabBarIOS,
   Component
-
 } = React;
+var Icon = require('react-native-vector-icons/Ionicons');
+
+
 
 var REQUEST_URL = "http://localhost:3000/api/v1/breadcrumbs"
 
@@ -34,25 +36,31 @@ class AppView extends Component {
 
   render() {
     return (
-      <TabBarIOS selectedTab={this.state.selectedTab}>
-        <TabBarIOS.Item
+      <TabBarIOS
+        barTintColor= "#dcdcdc"
+        selectedTab={this.state.selectedTab}
+        navigationBarHidden={true}>
+        <Icon.TabBarItem
           selected={this.state.selectedTab === 'ShowAds'}
           title= 'Ads'
+          iconName= 'easel'
+          selectedIconName= "easel"
           onPress={() => {this.setState({
             selectedTab: 'ShowAds'
           });
         }}>
         <ShowAds />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-
+        </Icon.TabBarItem>
+        <Icon.TabBarItem
           selected={this.state.selectedTab === 'MainMenu'}
           title= 'Menu'
+          iconName= 'grid'
+          selectedIconName="grid"
           onPress={() => this.fetchData()}>
         <MainMenu navigator={this.props.navigator}
                   cashSum={this.state.cashSum}
                   />
-        </TabBarIOS.Item>
+        </Icon.TabBarItem>
       </TabBarIOS>
     )
   }

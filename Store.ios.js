@@ -13,6 +13,8 @@ var {
   TouchableHighlight,
 } = React;
 
+var Icon = require('react-native-vector-icons/Ionicons');
+
 class Store extends Component {
   restaurant() {
     this.props.navigator.push({
@@ -38,28 +40,31 @@ class Store extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <TouchableHighlight
+            underlayColor="#1e90ff"
             style={styles.button}
             onPress={() => this.restaurant()}>
             <Text style={styles.buttonText}>
-              Restaurant
+              <Icon name="fork" size={50}/><Icon name="knife" size={50}/>
             </Text>
           </TouchableHighlight>
         </View>
         <View style={styles.container}>
           <TouchableHighlight
+            underlayColor="#1e90ff"
             style={styles.button}
             onPress={() => this.beverage()}>
             <Text style={styles.buttonText}>
-              Beverage
+              <Icon name="coffee" size={50}/>
             </Text>
           </TouchableHighlight>
         </View>
         <View style={styles.container}>
           <TouchableHighlight
+            underlayColor="#1e90ff"
             style={styles.button}
             onPress={() => this.eletronic()}>
             <Text style={styles.buttonText}>
-              Eletronics
+              <Icon name="monitor" size={50}/>
             </Text>
           </TouchableHighlight>
         </View>
@@ -72,16 +77,18 @@ class Store extends Component {
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    paddingTop: 70,
+    paddingTop: 20,
+    backgroundColor: "#F5F5F5"
   },
   container: {
-    padding: 15
-
+    paddingRight: 70,
+    paddingLeft: 70,
+    paddingTop: 50,
   },
   button: {
-    height: 50,
+    height: 80,
     flexDirection: 'row',
-    backgroundColor: '#d5dbdb',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignSelf: 'stretch',
     borderWidth: 1,
@@ -90,7 +97,7 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15,
-    color: 'white',
+    color: 'black',
     alignSelf: 'center'
 
   }

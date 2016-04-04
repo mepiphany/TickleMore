@@ -77,7 +77,7 @@ class Beverages extends Component {
 
 var styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
   },
   rowContainer: {
     flex: 1,

@@ -10,6 +10,7 @@ var {
   Component,
   ListView,
   Image,
+  ScrollView
 } = React;
 
 var REQUEST_URL = 'http://localhost:3000/api/v1/restaurants'
@@ -43,9 +44,11 @@ class Restaurants extends Component {
       return this.renderLoadingView();
     }
     return(
+      <ScrollView>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRestaurant}/>
+      </ScrollView>
     )
   }
   renderLoadingView() {
@@ -59,7 +62,6 @@ class Restaurants extends Component {
   }
   renderRestaurant(restaurant) {
     return (
-
       <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <Image
@@ -78,7 +80,7 @@ class Restaurants extends Component {
 
 var styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
   },
   rowContainer: {
     flex: 1,

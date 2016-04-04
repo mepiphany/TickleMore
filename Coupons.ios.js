@@ -49,7 +49,7 @@ class Coupons extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderCoupon}/>
-    </ScrollView>
+      </ScrollView>
   )
   }
   renderLoadingView() {
@@ -63,7 +63,7 @@ class Coupons extends Component {
   }
   renderCoupon(coupon) {
     return (
-      <View>
+      <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <Image
             source={{uri: coupon.image}}
@@ -81,6 +81,9 @@ class Coupons extends Component {
 }
 
 var styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
   rowContainer: {
     flex: 1,
     flexDirection: 'row',

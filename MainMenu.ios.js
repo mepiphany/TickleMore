@@ -15,16 +15,24 @@ var {
   View
 } = React;
 
+var Icon = require('react-native-vector-icons/Ionicons');
+
 class Menu extends Component {
   render() {
     return (
         <ScrollableTabView
+          tabBarBackgroundColor= "#000"
+          tabBarActiveTextColor= "#FFE303"
+          tabBarInactiveTextColor= "#fff"
+          tabBarUnderlineColor= "#ffd700"
           style={styles.space}>
-          <CashInfo tabLabel="CashInfo"
+          <CashInfo
+            tabLabel= "CashInfo"
             navigator={this.props.navigator}
             cashSum={this.props.cashSum}
             />
-          <Store tabLabel="Store"
+          <Store
+            tabLabel= "Store"
             navigator={this.props.navigator}/>
           <Coupons tabLabel="Coupons"/>
           <More tabLabel="More" />

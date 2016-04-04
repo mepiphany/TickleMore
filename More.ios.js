@@ -24,9 +24,9 @@ class More extends Component {
 
     }
   }
-  render() {
-    return(
-      <ScrollView>
+
+  renderAppSetting() {
+    return (
       <View style={styles.container}>
         <View style={styles.header}><Text style={styles.headerText}>App Settings</Text></View>
         <View style={styles.content}>
@@ -54,8 +54,37 @@ class More extends Component {
               value={this.state.falseSwitchOn3} />
           </View>
         </View>
-        <View style={styles.header}><Text style={styles.headerText}>Info</Text></View>
       </View>
+    )
+  }
+
+  renderInfo() {
+    return(
+      <View>
+        <View style={styles.header}><Text style={styles.headerText}>Info</Text>
+      </View>
+      <View style={styles.content}>
+        <Text>Exmaple 1</Text>
+      </View>
+      <View style={styles.content}>
+        <Text>Exmaple 2</Text>
+      </View>
+      <View style={styles.content}>
+        <Text>Exmaple 3</Text>
+      </View>
+      <View style={styles.content}>
+        <Text>Exmaple 4</Text>
+      </View>
+    </View>
+  )
+}
+
+
+  render() {
+    return(
+      <ScrollView>
+        {this.renderAppSetting()}
+        {this.renderInfo()}
       </ScrollView>
     )
   }
