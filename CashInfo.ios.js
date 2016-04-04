@@ -13,7 +13,7 @@ var {
   StyleSheet,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
 } = React;
 
 var Icon = require('react-native-vector-icons/Ionicons');
@@ -38,7 +38,7 @@ class CashInfo extends Component {
       this.props.cashSum
     )
   }
-  _onPress(){
+  _showAlert(){
     Alert.alert("Would you like to withdraw? " + "$" + this.cashSumAlert())
   }
   render() {
@@ -52,7 +52,7 @@ class CashInfo extends Component {
             <TouchableHighlight
               style={styles.ImageBorder}
               underlayColor= "#fff"
-              onPress={() => this._onPress()}
+              onPress={() => this._showAlert()}
               >
             <Image
               style={styles.cashOutImg}
@@ -86,7 +86,6 @@ class CashInfo extends Component {
           </TouchableHighlight>
         </View>
       </View>
-
     )
   }
 }
@@ -156,7 +155,7 @@ var styles = StyleSheet.create({
     borderColor: '#000',
     borderWidth: 1,
     padding: 8
-    
+
   }
 
 

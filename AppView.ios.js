@@ -39,7 +39,7 @@ class AppView extends Component {
       <TabBarIOS
         barTintColor= "#dcdcdc"
         selectedTab={this.state.selectedTab}
-        navigationBarHidden={true}>
+        >
         <Icon.TabBarItem
           selected={this.state.selectedTab === 'ShowAds'}
           title= 'Ads'

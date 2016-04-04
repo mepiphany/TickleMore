@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var CashInfo = require('./CashInfo.ios')
 
 var {
   View,
@@ -8,12 +9,19 @@ var {
   StyleSheet,
   Component,
   ListView,
-  TouchableHighlight
+  TouchableHighlight,
 } = React;
 
 var REQUEST_URL = "http://localhost:3000/api/v1/users"
 
 class InviteFriends extends Component {
+  backToCashInfo(){
+    this.props.navigator.pop({
+      title: "InviteFriends",
+      component: CashInfo
+    })
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -42,9 +50,15 @@ class InviteFriends extends Component {
       return this.renderLoadingView();
     }
     return(
+      <View style={{paddingTop: 20}}>
+        <TouchableHighlight onPress={() => this.backToCashInfo()}>
+          <Text>Hello</Text>
+        </TouchableHighlight>
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderFriend}/>
+        renderRow={this.renderFriend}>
+      </ListView>
+      </View>
 
     )
   }

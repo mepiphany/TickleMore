@@ -12,7 +12,7 @@ var {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
 } = React;
 
 var Icon = require('react-native-vector-icons/Ionicons');
