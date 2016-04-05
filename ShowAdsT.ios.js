@@ -92,15 +92,17 @@ class ShowAds extends Component {
             loop={false}
             style={{backgroundColor: '#F5F5F5' }}
             >
+
             {this.state.ads.map((ad, index) => {
               return(
                 <View style={styles.container} key={index}>
-                  <Image
-                    source={{uri: ad.image}}
-                    style={styles.image}
-                    />
-                  <Text>{ad.cash_value}</Text>
-                  <Text>{this.cashResult()}</Text>
+                  <View style={styles.backgroundAds}>
+                    <Image
+                      source={{uri: ad.image}}
+                      style={styles.image}
+                      />
+                    <Text style={styles.adText}>{"+" + ad.cash_value}</Text>
+                  </View>
                 </View>
               );
             })}
@@ -120,42 +122,36 @@ class ShowAds extends Component {
 
   var styles = StyleSheet.create({
     image: {
-      height: 400,
-      width: 250,
+      height: 380,
+      width: 230,
       justifyContent: 'center',
-      alignItems: 'center'
-    },
-    container: {
-      flex: 1,
       alignItems: 'center',
-      justifyContent: 'center'
+      marginBottom: 10
 
     },
-    wrapper: {
-    },
-    slide1: {
+    container: {
+      marginTop: 20,
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
-    },
-    slide2: {
-      flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#97CAE5',
+      backgroundColor: '#003366'
     },
-    slide3: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#92BBD9',
-    },
-    text: {
-      color: '#fff',
-      fontSize: 30,
+    adText: {
+      color: '#000',
+      fontSize: 10,
       fontWeight: 'bold',
+      alignSelf: 'flex-start',
+      paddingLeft: 10
+
     },
+    backgroundAds: {
+      backgroundColor: "#e7ebf0",
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 410,
+      width: 250,
+      marginBottom: 50
+    }
 
 
   });

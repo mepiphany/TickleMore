@@ -19,8 +19,8 @@ var {
 var Icon = require('react-native-vector-icons/Ionicons');
 
 
-
 class CashInfo extends Component {
+
   inviteFriend(){
     this.props.navigator.push({
       title: "InviteFriends",
@@ -95,6 +95,8 @@ class CashInfo extends Component {
     )
   }
 }
+
+CashInfo.prototype.toString = () => "CashInfo";
 
 var styles = StyleSheet.create({
   mainContainer: {

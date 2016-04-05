@@ -17,22 +17,25 @@ var {
 
 var Icon = require('react-native-vector-icons/Ionicons');
 
+Icon.prototype.toString = function () { return "asdas" };
+
 class Menu extends Component {
   render() {
+    var thing = <Icon name="ios-paper"/>
     return (
         <ScrollableTabView
-          tabBarBackgroundColor= "#000"
-          tabBarActiveTextColor= "#FFE303"
-          tabBarInactiveTextColor= "#fff"
-          tabBarUnderlineColor= "#ffd700"
+          tabBarBackgroundColor="#000"
+          tabBarActiveTextColor="#FFE303"
+          tabBarInactiveTextColor="#fff"
+          tabBarUnderlineColor="#ffd700"
           style={styles.space}>
           <CashInfo
-            tabLabel= "CashInfo"
+            tabLabel="CashInfo"
             navigator={this.props.navigator}
             cashSum={this.props.cashSum}
             />
           <Store
-            tabLabel= "Store"
+            tabLabel="Store"
             navigator={this.props.navigator}/>
           <Coupons tabLabel="Coupons"/>
           <More tabLabel="More" />
