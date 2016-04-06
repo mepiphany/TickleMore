@@ -89,7 +89,13 @@ class Beverages extends Component {
               style={styles.image}
               />
             <View style={styles.container}>
-              <Text>{beverage.title}</Text>
+              <Text style={{fontWeight: "200", fontSize: 10}}>{beverage.title}</Text>
+              <Text style={{fontWeight: "bold"}}>{beverage.description}</Text>
+              <Text style={{color: '#ff8c00', fontWeight: "bold"}}>
+                <Image
+                  style={styles.coinImg}
+                  source={require("./img/ticklemorecoin.png")}/>
+                &nbsp;{beverage.c}</Text>
             </View>
           </View>
           <View style={styles.separator}></View>
@@ -142,7 +148,7 @@ var styles = StyleSheet.create({
     textAlign: 'left',
     width: 50,
     paddingLeft: 10
-  },
+},
   navBarTitle: {
     color: '#ddd',
     width: 110,
@@ -157,6 +163,10 @@ var styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20
   },
+  coinImg: {
+    width: 11,
+    height: 11
+  }
 
 
 });

@@ -17,11 +17,9 @@ var {
 
 var Icon = require('react-native-vector-icons/Ionicons');
 
-Icon.prototype.toString = function () { return "asdas" };
 
 class Menu extends Component {
   render() {
-    var thing = <Icon name="ios-paper"/>
     return (
         <ScrollableTabView
           tabBarBackgroundColor="#000"
@@ -37,7 +35,8 @@ class Menu extends Component {
           <Store
             tabLabel="Store"
             navigator={this.props.navigator}/>
-          <Coupons tabLabel="Coupons"/>
+          <Coupons tabLabel="Coupons"
+            navigator={this.props.navigator}/>
           <More tabLabel="More" />
         </ScrollableTabView>
     )

@@ -91,12 +91,17 @@ class CashInfo extends Component {
               <Text style={{alignSelf: 'center'}}><Icon name="ios-list-outline" size={50}/></Text>
           </TouchableHighlight>
         </View>
+        <View style={styles.container}>
+          <TouchableHighlight
+            underlayColor="#1e90ff"
+            style={styles.button}>
+              <Text style={{alignSelf: 'center'}}><Icon name="bag" size={50}/></Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
 }
-
-CashInfo.prototype.toString = () => "CashInfo";
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -105,7 +110,7 @@ var styles = StyleSheet.create({
     paddingTop: 0.1
   },
   container: {
-    paddingTop: 46,
+    paddingTop: 38,
     paddingRight: 60,
     paddingLeft: 60,
     alignItems: 'center',

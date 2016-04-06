@@ -47,6 +47,13 @@
                                                       moduleName:@"TickleMore"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
+//  UIImage *image = [UIImage imageNamed:@"LaunchImage"];
+//  if (image) {
+//    UIImageView *launchView = [[UIImageView alloc] initWithImage: image];
+//    launchView.contentMode = UIViewContentModeBottom;
+//    launchView.image = image;
+//    rootView.loadingView = launchView;
+//  }
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];

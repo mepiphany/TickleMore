@@ -89,7 +89,13 @@ class Restaurants extends Component {
             style={styles.image}
             />
           <View style={styles.container}>
-            <Text>{restaurant.title}</Text>
+            <Text style={{fontWeight: "200", fontSize: 10}}>{restaurant.title}</Text>
+            <Text style={{fontWeight: "bold"}}>{restaurant.description}</Text>
+            <Text style={{color: '#ff8c00', fontWeight: "bold"}}>
+              <Image
+                style={styles.coinImg}
+                source={require("./img/ticklemorecoin.png")}/>
+              &nbsp;{restaurant.c}</Text>
           </View>
         </View>
         <View style={styles.separator}></View>
@@ -157,6 +163,10 @@ var styles = StyleSheet.create({
     width: 110,
     fontSize: 18
   },
+  coinImg: {
+    width: 11,
+    height: 11
+  }
 });
 
 module.exports = Restaurants;

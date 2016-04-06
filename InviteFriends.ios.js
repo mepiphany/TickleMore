@@ -90,7 +90,8 @@ class InviteFriends extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.rowContainer}>
           <View style={styles.leftContainer}>
-            <Text>{friends.name}</Text>
+            <Text style={{fontWeight: 'bold'}}>{friends.name}</Text>
+            <Text style={{fontWeight: '200'}}>{friends.email}</Text>
           </View>
           <View style={styles.rightContainer}>
             <TouchableHighlight>

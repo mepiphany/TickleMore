@@ -68,6 +68,16 @@ class Store extends Component {
             </Text>
           </TouchableHighlight>
         </View>
+        <View style={styles.container}>
+          <TouchableHighlight
+            underlayColor="#1e90ff"
+            style={styles.button}>
+            <Text style={styles.buttonText}>
+              <Icon name="more" size={50}/>
+            </Text>
+          </TouchableHighlight>
+        </View>
+
       </View>
     )
   }
@@ -83,7 +93,7 @@ var styles = StyleSheet.create({
   container: {
     paddingRight: 70,
     paddingLeft: 70,
-    paddingTop: 35,
+    paddingTop: 30,
   },
   button: {
     height: 85,

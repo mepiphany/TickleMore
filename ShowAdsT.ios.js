@@ -92,7 +92,6 @@ class ShowAds extends Component {
             loop={false}
             style={{backgroundColor: '#F5F5F5' }}
             >
-
             {this.state.ads.map((ad, index) => {
               return(
                 <View style={styles.container} key={index}>
@@ -101,7 +100,7 @@ class ShowAds extends Component {
                       source={{uri: ad.image}}
                       style={styles.image}
                       />
-                    <Text style={styles.adText}>{"+" + ad.cash_value}</Text>
+                    <Text style={styles.adText}>{ad.cash_value}</Text>
                   </View>
                 </View>
               );

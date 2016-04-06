@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var CouponDetails = require('./CouponDetails.ios')
 
 var {
   Component,
@@ -20,21 +21,32 @@ class Coupons extends Component {
     super(props);
     this.state = {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => row1.id !== row2.id,
       }),
       loaded: false,
     };
   }
-  fetchData(){
+  fetchData() {
     fetch(REQUEST_URL)
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.coupons),
+        responseData: responseData.coupons,
         loaded: true,
       });
     })
     .done();
+  }
+
+  rowPressed(couponsDetail) {
+    var coupon = this.state.responseData.filter(prop => prop.id === couponsDetail)[0];
+
+    this.props.navigator.push({
+      title: "Coupons",
+      component: CouponDetails,
+      passProps: {coupon: coupon}
+    });
   }
 
   componentDidMount(){
@@ -48,7 +60,7 @@ class Coupons extends Component {
       <ScrollView style={{marginBottom: 55}}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderCoupon}/>
+          renderRow={this.renderRow.bind(this)}/>
       </ScrollView>
   )
   }
@@ -61,18 +73,22 @@ class Coupons extends Component {
       </View>
     );
   }
-  renderCoupon(coupon) {
+  renderRow(rowData, sectionID, rowID) {
     return (
       <View style={styles.mainContainer}>
-        <View style={styles.rowContainer}>
-          <Image
-            source={{uri: coupon.image}}
-            style={styles.image}
-            />
-          <View style={styles.container}>
-            <Text>{coupon.title}</Text>
+        <TouchableHighlight
+          underlayColor= "#1e90ff"
+          onPress={() => this.rowPressed(rowData.id)}>
+          <View style={styles.rowContainer}>
+            <Image
+              source={{uri: rowData.image}}
+              style={styles.image}
+              />
+            <View style={styles.container}>
+              <Text>{rowData.title}</Text>
+            </View>
           </View>
-        </View>
+        </TouchableHighlight>
         <View style={styles.separator}></View>
       </View>
     )
