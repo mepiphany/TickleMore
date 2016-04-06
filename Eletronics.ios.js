@@ -97,6 +97,9 @@ class Eletronics extends Component {
               source={require("./img/ticklemorecoin.png")}/>
             &nbsp;{eletronic.c}</Text>
           </View>
+          <View>
+            <Text><Icon name="plus-circled" size={17}/></Text>
+          </View>
         </View>
         <View style={styles.separator}></View>
       </View>

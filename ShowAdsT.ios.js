@@ -100,7 +100,7 @@ class ShowAds extends Component {
                       source={{uri: ad.image}}
                       style={styles.image}
                       />
-                    <Text style={styles.adText}>{ad.cash_value}</Text>
+                    <Text style={styles.adText}>{"+" + ad.cash_value}</Text>
                   </View>
                 </View>
               );

@@ -14,6 +14,7 @@ var {
   ScrollView
 } = React;
 
+var Icon = require('react-native-vector-icons/Ionicons');
 var REQUEST_URL = 'http://localhost:3000/api/v1/coupons'
 
 class Coupons extends Component {
@@ -85,7 +86,12 @@ class Coupons extends Component {
               style={styles.image}
               />
             <View style={styles.container}>
-              <Text>{rowData.title}</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontWeight: 'bold', fontSize: 15, left: 80}}>{rowData.title}</Text>
+              </View>
+                <View style={styles.icon}>
+                  <Icon name="arrow-right-b" size={17}/>
+                </View>
             </View>
           </View>
         </TouchableHighlight>
@@ -120,7 +126,13 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
+  icon: {
+    flex: 2,
+    alignItems: 'flex-end',
+
   }
 });
 
