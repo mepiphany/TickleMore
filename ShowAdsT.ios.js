@@ -62,12 +62,9 @@ class ShowAds extends Component {
             title: adSwiped.title,
             view: true,
             cash_value: adSwiped.cash_value
-
           })
         })
       }
-
-
 
   _onMomentumScrollEnd(e, state, context) {
     this._handleIncrement(state.index)
@@ -78,7 +75,6 @@ class ShowAds extends Component {
       this.state.cashIncrement
     );
   }
-
 
   render() {
       if (!this.state.ads) {

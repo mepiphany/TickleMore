@@ -11,7 +11,8 @@ var {
   Image,
   TouchableHighlight,
   ListView,
-  ScrollView
+  ScrollView,
+  ActivityIndicatorIOS
 } = React;
 
 var Icon = require('react-native-vector-icons/Ionicons');
@@ -67,10 +68,8 @@ class Coupons extends Component {
   }
   renderLoadingView() {
     return (
-      <View style={styles.container}>
-        <Text>
-          Loading Coupons...
-        </Text>
+      <View style={styles.activityContainer}>
+          <ActivityIndicatorIOS hidden="true" size="large" />
       </View>
     );
   }
@@ -132,8 +131,13 @@ var styles = StyleSheet.create({
   icon: {
     flex: 2,
     alignItems: 'flex-end',
-
+  },
+  activityContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
+
 });
 
 module.exports = Coupons;

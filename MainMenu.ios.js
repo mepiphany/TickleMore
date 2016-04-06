@@ -35,7 +35,8 @@ class Menu extends Component {
             <ScrollView tabLabel="store" style={styles.tabView}>
               <Store
                 tabLabel="Store"
-                navigator={this.props.navigator}/>
+                navigator={this.props.navigator}
+                cashSum={this.props.cashSum}/>
             </ScrollView>
             <ScrollView tabLabel="label-outline" style={styles.tabView}>
               <Coupons

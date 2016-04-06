@@ -20,7 +20,6 @@ var Icon = require('react-native-vector-icons/Ionicons');
 
 
 class CashInfo extends Component {
-
   inviteFriend(){
     this.props.navigator.push({
       title: "InviteFriends",
@@ -41,6 +40,7 @@ class CashInfo extends Component {
   _showAlert(){
     Alert.alert("Would you like to withdraw? " + "$" + this.cashSumAlert())
   }
+
   render() {
     return (
       <View style={styles.mainContainer}>

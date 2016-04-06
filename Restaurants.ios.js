@@ -11,7 +11,8 @@ var {
   Component,
   ListView,
   Image,
-  ScrollView
+  ScrollView,
+  ActivityIndicatorIOS
 } = React;
 
 var Icon = require('react-native-vector-icons/Ionicons');
@@ -73,10 +74,8 @@ class Restaurants extends Component {
   }
   renderLoadingView() {
     return (
-      <View style={styles.container}>
-        <Text>
-          Loading Restaurants...
-        </Text>
+      <View style={styles.activityContainer}>
+          <ActivityIndicatorIOS hidden="true" size="large" />
       </View>
     )
   }
@@ -169,6 +168,11 @@ var styles = StyleSheet.create({
   coinImg: {
     width: 11,
     height: 11
+  },
+  activityContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
