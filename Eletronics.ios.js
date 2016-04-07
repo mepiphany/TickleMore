@@ -12,12 +12,14 @@ var {
   ListView,
   Image,
   ScrollView,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
+  Alert
 } = React;
 
 var Icons = require('react-native-vector-icons/MaterialIcons');
 var Icon = require('react-native-vector-icons/Ionicons');
 var REQUEST_URL = 'http://localhost:3000/api/v1/eletronics'
+var POST_REQUEST_URL = 'http://localhost:3000/api/v1/restaurant_carts'
 
 class Eletronics extends Component {
   backToStore(){
@@ -28,9 +30,10 @@ class Eletronics extends Component {
   }
   constructor(props) {
     super(props);
+    this.renderEletronic = this.renderEletronic.bind(this)
     this.state = {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => row1.id !== row2.id,
       }),
       loaded: false,
     }
@@ -41,6 +44,7 @@ class Eletronics extends Component {
     .then((responseData) => {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.eletronics),
+        dataEletronic: responseData.eletronics,
         loaded: true,
       });
     })
@@ -48,6 +52,33 @@ class Eletronics extends Component {
   }
   componentDidMount() {
     this.fetchData();
+  }
+  postData(restaurant) {
+        fetch(POST_REQUEST_URL, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: restaurant.title,
+            image: restaurant.image,
+            description: restaurant.description,
+            cash_value: restaurant.c
+          })
+        })
+      }
+  onClick(eletronic) {
+    Alert.alert(
+      'Add it to your Bag?',
+      'Go to Home for more info',
+      [
+        {text: "Yes!", onPress: () =>
+          (this.postData(this.state.dataEletronic.filter(res => res.id === eletronic)[0]))
+          },
+        {text: "No!"}
+      ]
+    )
   }
   render() {
     if (!this.state.loaded) {
@@ -98,7 +129,11 @@ class Eletronics extends Component {
             &nbsp;{eletronic.c}</Text>
           </View>
           <View>
-            <Text><Icon name="plus-circled" size={20}/></Text>
+            <TouchableHighlight
+              underlayColor={"transparent"}
+              onPress={() => this.onClick(eletronic.id)}>
+              <Text><Icon name="plus-circled" size={20} /></Text>
+            </TouchableHighlight>
           </View>
         </View>
         <View style={styles.separator}></View>
