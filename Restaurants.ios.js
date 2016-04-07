@@ -12,11 +12,14 @@ var {
   ListView,
   Image,
   ScrollView,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
+  Alert,
 } = React;
 
+var Icons = require('react-native-vector-icons/MaterialIcons');
 var Icon = require('react-native-vector-icons/Ionicons');
 var REQUEST_URL = 'http://localhost:3000/api/v1/restaurants'
+var POST_REQUEST_URL = 'http://localhost:3000/api/v1/restaurant_carts'
 
 class Restaurants extends Component {
   backToStore(){
@@ -27,9 +30,12 @@ class Restaurants extends Component {
   }
   constructor(props) {
   super(props);
+  index: 0,
+  this.renderRestaurant = this.renderRestaurant.bind(this)
   this.state = {
     dataSource: new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2,
+      rowHasChanged: (row1, row2) => row1.id !== row2.id
+
     }),
       loaded: false,
     };
@@ -40,6 +46,7 @@ class Restaurants extends Component {
     .then((responseData)=> {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.restaurants),
+        dataRestaurant: responseData.restaurants,
         loaded: true,
       });
     })
@@ -48,6 +55,37 @@ class Restaurants extends Component {
   componentDidMount(){
     this.fetchData();
   }
+
+  postData(restaurant) {
+        fetch(POST_REQUEST_URL, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: restaurant.title,
+            image: restaurant.image,
+            description: restaurant.description,
+            cash_value: restaurant.cash_value
+          })
+        })
+      }
+
+      onClick(restaurant) {
+        Alert.alert(
+          'Add it to your Bag?',
+          'Go to Home for more info',
+          [
+            {text: "Yes!", onPress: () =>
+              (this.postData(this.state.dataRestaurant.filter(res => res.id === restaurant)[0]))
+              },
+            {text: "No!"}
+          ]
+        )
+      }
+
+
   render() {
     if (!this.state.loaded) {
       return this.renderLoadingView();
@@ -59,7 +97,7 @@ class Restaurants extends Component {
           <TouchableHighlight
             style={{flex: 1, width: 5}}
             onPress={() => this.backToStore()}>
-            <Text style={styles.navBarText}><Icon name={"chevron-left"} size={17}/>&nbsp;&nbsp;<Icon name={"ios-cart-outline"} size={17}/></Text>
+            <Text style={styles.navBarText}><Icons name={"keyboard-arrow-left"} size={20}/><Icons name={"store"} size={20}/></Text>
           </TouchableHighlight>
           <View style={styles.navBarRight}>
             <Text style={styles.navBarTitle}>Restaurants</Text>
@@ -97,7 +135,12 @@ class Restaurants extends Component {
               &nbsp;{restaurant.c}</Text>
           </View>
           <View>
-            <Text><Icon name="plus-circled" size={17} /></Text>
+            <TouchableHighlight
+              index={this.state.index}
+              underlayColor={"transparent"}
+              onPress={() => this.onClick(restaurant.id)}>
+              <Text><Icon name="plus-circled" size={20} /></Text>
+            </TouchableHighlight>
           </View>
         </View>
         <View style={styles.separator}></View>

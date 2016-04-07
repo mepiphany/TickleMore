@@ -15,6 +15,7 @@ var {
   ActivityIndicatorIOS
 } = React;
 
+var Icons = require('react-native-vector-icons/MaterialIcons');
 var Icon = require('react-native-vector-icons/Ionicons');
 var REQUEST_URL = 'http://localhost:3000/api/v1/eletronics'
 
@@ -59,7 +60,7 @@ class Eletronics extends Component {
             <TouchableHighlight
               style={{flex: 1, width: 5}}
               onPress={() => this.backToStore()}>
-              <Text style={styles.navBarText}><Icon name={"chevron-left"} size={17}/>&nbsp;&nbsp;<Icon name={"ios-cart-outline"} size={17}/></Text>
+              <Text style={styles.navBarText}><Icons name={"keyboard-arrow-left"} size={20}/><Icons name={"store"} size={20}/></Text>
             </TouchableHighlight>
             <View style={styles.navBarRight}>
               <Text style={styles.navBarTitle}>Eletronics</Text>
@@ -97,7 +98,7 @@ class Eletronics extends Component {
             &nbsp;{eletronic.c}</Text>
           </View>
           <View>
-            <Text><Icon name="plus-circled" size={17}/></Text>
+            <Text><Icon name="plus-circled" size={20}/></Text>
           </View>
         </View>
         <View style={styles.separator}></View>

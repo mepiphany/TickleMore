@@ -4,6 +4,7 @@ var React = require('react-native');
 var InviteFriends = require('./InviteFriends.ios')
 var History = require('./History.ios')
 var ShowAds = require('./ShowAdsT.ios');
+var Bag = require('./Bag.ios');
 
 
 var {
@@ -51,12 +52,13 @@ class CashInfo extends Component {
                       paddingLeft: 9,
                       paddingRight: 9,
                       fontSize: 15,
+                      fontFamily: "Trebuchet MS"
                     }}>TickleMore</Text>
           </View>
           <View style={{alignItems: "flex-end", paddingRight: 15}}>
             <TouchableHighlight
               style={styles.ImageBorder}
-              underlayColor= "#fff"
+              underlayColor={"transparent"}
               onPress={() => this._showAlert()}
               >
             <Image
@@ -164,12 +166,7 @@ var styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  ImageBorder: {
-    borderColor: '#000',
-    borderWidth: 1,
-    padding: 5
 
-  }
 
 
 

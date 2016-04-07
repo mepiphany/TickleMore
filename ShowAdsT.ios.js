@@ -69,6 +69,7 @@ class ShowAds extends Component {
   _onMomentumScrollEnd(e, state, context) {
     this._handleIncrement(state.index)
     this.postData(this.state.ads[this.state.adIndex])
+    debugger;
   }
   cashResult() {
     return(

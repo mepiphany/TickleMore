@@ -12,7 +12,7 @@ var {
   TouchableHighlight
 } = React;
 
-var Icon = require('react-native-vector-icons/Ionicons');
+var Icon = require('react-native-vector-icons/MaterialIcons');
 class CouponDetails extends Component {
   backToCoupon() {
     this.props.navigator.pop({
@@ -28,7 +28,7 @@ class CouponDetails extends Component {
           <TouchableHighlight
             style={{flex: 1, width: 5}}
             onPress={() => this.backToCoupon()}>
-            <Text style={styles.navBarText}><Icon name={"chevron-left"} size={17}/>&nbsp;&nbsp;<Icon name={"ios-cart-outline"} size={17}/></Text>
+            <Text style={styles.navBarText}><Icon name={"keyboard-arrow-left"} size={20}/><Icon name={"label-outline"} size={20}/></Text>
           </TouchableHighlight>
           <View style={styles.navBarRight}>
             <Text style={styles.navBarTitle}>Coupons</Text>

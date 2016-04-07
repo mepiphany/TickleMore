@@ -16,6 +16,8 @@ var {
 } = React;
 
 var Icon = require('react-native-vector-icons/Ionicons');
+
+var Icons = require('react-native-vector-icons/MaterialIcons');
 var REQUEST_URL = "http://localhost:3000/api/v1/users"
 
 class InviteFriends extends Component {
@@ -25,9 +27,9 @@ class InviteFriends extends Component {
       component: CashInfo
     })
   }
-
   constructor(props) {
     super(props);
+    this.renderFriend = this.renderFriend.bind(this);
     this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
@@ -49,6 +51,17 @@ class InviteFriends extends Component {
   componentDidMount() {
     this.fetchData()
   }
+
+  _onPress() {
+    Alert.alert(
+      'Would you like to send an Invitation to your Friend?',
+      'Get extra $0.50 cash!',[
+        {text: 'Yes!'},
+        {text: 'No!'}
+      ]
+    )
+  }
+
   render() {
     if (!this.state.loaded) {
       return this.renderLoadingView();
@@ -60,7 +73,7 @@ class InviteFriends extends Component {
             <TouchableHighlight
               style={{flex: 1, width: 5}}
               onPress={() => this.backToCashInfo()}>
-              <Text style={styles.navBarText}><Icon name={"chevron-left"} size={15}/>&nbsp;&nbsp;<Icon name={"cash"} size={15}/></Text>
+              <Text style={styles.navBarText}><Icons name={"keyboard-arrow-left"} size={20}/><Icons name={"home"} size={20}/></Text>
             </TouchableHighlight>
           <View style={styles.navBarRight}>
             <Text style={styles.navBarTitle}>Invite Friends</Text>
@@ -93,7 +106,9 @@ class InviteFriends extends Component {
             <Text style={{fontWeight: '200'}}>{friends.email}</Text>
           </View>
           <View style={styles.rightContainer}>
-            <TouchableHighlight>
+            <TouchableHighlight
+              underlayColor={"transparent"}
+              onPress={() => this._onPress()}>
             <Text><Icon name={"paper-airplane"} size={20}/></Text>
             </TouchableHighlight>
           </View>

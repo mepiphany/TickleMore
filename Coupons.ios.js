@@ -42,6 +42,7 @@ class Coupons extends Component {
   }
 
   rowPressed(couponsDetail) {
+    debugger;
     var coupon = this.state.responseData.filter(prop => prop.id === couponsDetail)[0];
 
     this.props.navigator.push({
