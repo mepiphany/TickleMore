@@ -67,7 +67,7 @@ class Restaurants extends Component {
             title: restaurant.title,
             image: restaurant.image,
             description: restaurant.description,
-            cash_value: restaurant.cash_value
+            cash_value: restaurant.c
           })
         })
       }

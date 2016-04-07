@@ -14,13 +14,19 @@ var {
   StyleSheet,
   TouchableHighlight,
   Image,
-  Alert,
+  Alert
 } = React;
 
 var Icon = require('react-native-vector-icons/Ionicons');
 
 
 class CashInfo extends Component {
+  bag() {
+    this.props.navigator.push({
+      title: 'Bag',
+      component: Bag
+    })
+  }
   inviteFriend(){
     this.props.navigator.push({
       title: "InviteFriends",
@@ -96,6 +102,7 @@ class CashInfo extends Component {
         <View style={styles.container}>
           <TouchableHighlight
             underlayColor="#1e90ff"
+            onPress={() => this.bag()}
             style={styles.button}>
               <Text style={{alignSelf: 'center'}}><Icon name="bag" size={50}/></Text>
           </TouchableHighlight>
