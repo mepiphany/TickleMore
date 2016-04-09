@@ -67,26 +67,24 @@ class InviteFriends extends Component {
       return this.renderLoadingView();
     }
     return(
-      <ScrollView>
       <View style={styles.container}>
-        <View style={styles.navBar}>
+          <View style={styles.navBar}>
             <TouchableHighlight
               style={{flex: 1, width: 5}}
               onPress={() => this.backToCashInfo()}>
               <Text style={styles.navBarText}><Icons name={"keyboard-arrow-left"} size={20}/><Icons name={"home"} size={20}/></Text>
             </TouchableHighlight>
-          <View style={styles.navBarRight}>
-            <Text style={styles.navBarTitle}>Invite Friends</Text>
+            <View style={styles.navBarRight}>
+              <Text style={styles.navBarTitle}>Invite Friends</Text>
+            </View>
           </View>
-        </View>
-        <View>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this.renderFriend}>
-          </ListView>
-        </View>
+        <ScrollView>
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={this.renderFriend}>
+            </ListView>
+        </ScrollView>
       </View>
-      </ScrollView>
 
     )
   }
@@ -122,7 +120,8 @@ class InviteFriends extends Component {
 
 var styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
+    marginBottom: 5
   },
   rowContainer: {
     flex: 1,

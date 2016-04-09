@@ -85,14 +85,12 @@ class Restaurants extends Component {
         )
       }
 
-
   render() {
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
     return(
-      <ScrollView>
-        <View style={styles.navContainer}>
+      <View style={styles.navContainer}>
         <View style={styles.navBar}>
           <TouchableHighlight
             style={{flex: 1, width: 5}}
@@ -103,11 +101,12 @@ class Restaurants extends Component {
             <Text style={styles.navBarTitle}>Restaurants</Text>
           </View>
         </View>
-      </View>
+      <ScrollView>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRestaurant}/>
       </ScrollView>
+    </View>
     )
   }
   renderLoadingView() {
@@ -152,6 +151,7 @@ class Restaurants extends Component {
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    marginBottom: 5
   },
   rowContainer: {
     flex: 1,
@@ -180,7 +180,6 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   navBar: {
-    flex: 1,
     height: 49,
     borderBottomColor: '#d5dbdb',
     borderTopColor: '#d5dbdb',

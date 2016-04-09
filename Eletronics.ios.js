@@ -85,23 +85,23 @@ class Eletronics extends Component {
       return this.renderLoadingView();
     }
     return(
-      <ScrollView>
-        <View style={styles.navContainer}>
-          <View style={styles.navBar}>
-            <TouchableHighlight
-              style={{flex: 1, width: 5}}
-              onPress={() => this.backToStore()}>
-              <Text style={styles.navBarText}><Icons name={"keyboard-arrow-left"} size={20}/><Icons name={"store"} size={20}/></Text>
-            </TouchableHighlight>
-            <View style={styles.navBarRight}>
-              <Text style={styles.navBarTitle}>Eletronics</Text>
-            </View>
+      <View style={styles.navContainer}>
+        <View style={styles.navBar}>
+          <TouchableHighlight
+            style={{flex: 1, width: 5}}
+            onPress={() => this.backToStore()}>
+            <Text style={styles.navBarText}><Icons name={"keyboard-arrow-left"} size={20}/><Icons name={"store"} size={20}/></Text>
+          </TouchableHighlight>
+          <View style={styles.navBarRight}>
+            <Text style={styles.navBarTitle}>Eletronics</Text>
           </View>
         </View>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderEletronic}/>
-      </ScrollView>
+        <ScrollView>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderEletronic}/>
+        </ScrollView>
+      </View>
     )
   }
   renderLoadingView() {
@@ -145,6 +145,7 @@ class Eletronics extends Component {
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    marginBottom: 5
   },
   rowContainer: {
     flex: 1,
@@ -169,7 +170,6 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   navBar: {
-    flex: 1,
     height: 49,
     borderBottomColor: '#d5dbdb',
     borderTopColor: '#d5dbdb',
