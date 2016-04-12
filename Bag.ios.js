@@ -18,6 +18,7 @@ var {
 
 var Icons = require('react-native-vector-icons/MaterialIcons');
 var REQUEST_URL = "http://localhost:3000/api/v1/restaurant_carts"
+var DELETE_REQUEST_URL = "http://localhost:3000/api/v1/restaurant_carts/"
 
 class Bag extends Component {
   backHome(){
@@ -42,6 +43,7 @@ class Bag extends Component {
       .then((responseData) => {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(responseData.restaurantCarts),
+          _data: responseData.restaurantCarts,
           loaded: true
         });
       })
@@ -49,6 +51,20 @@ class Bag extends Component {
   }
   componentDidMount(){
     this.fetchData()
+  }
+
+  deleteData(bag) {
+    fetch(DELETE_REQUEST_URL + bag, {
+      method: "DELETE",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+  }
+
+  _deleteItem(bag) {
+      this.deleteData(bag)
   }
 
   render() {
@@ -101,6 +117,7 @@ class Bag extends Component {
           </View>
           <View>
             <TouchableHighlight
+              onPress={() => this._deleteItem(bag.id)}
               underlayColor={"transparent"}>
               <Text><Icons name="credit-card" size={20} /></Text>
             </TouchableHighlight>
