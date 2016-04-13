@@ -61,6 +61,9 @@ class Bag extends Component {
         'Content-Type': 'application/json',
       }
     })
+    .then(() => {
+      this.fetchData()
+    })
   }
 
   _deleteItem(bag) {
